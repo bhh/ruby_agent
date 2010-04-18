@@ -21,7 +21,7 @@ while(true)
   # cpu
   if transmit.include? :cpu_usage
     cpu_usage = `cat /proc/loadavg`.split.first.to_f * 100
-    entries << {:name => "cpu_usage", :value => cpu_usage, :value => 100}
+    entries << {:name => "cpu_usage", :value => cpu_usage, :max => 100}
   end
 
   # memory
