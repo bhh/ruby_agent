@@ -1,8 +1,15 @@
 key: "user key"
 host: "host key"
-transmit:
-- cpu_usage
-- mem_usage
-- mem_buffers
-- mem_cached
-- disk_space 
+
+# Prevents Module Files from beeing loaded
+#
+# exclude_modules:
+#   - cpu_usage
+#   - memory
+exclude_modules:
+
+# Prevents Variables from beeing transmitted
+# exclude_variables:
+#   - cpu_usage
+#   - memory_cached
+exclude_variables:
