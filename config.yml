@@ -1,0 +1,8 @@
+key: "user key"
+host: "host key"
+transmit:
+- cpu_usage
+- mem_usage
+- mem_buffers
+- mem_cached
+- disk_space 
