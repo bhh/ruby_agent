@@ -54,10 +54,14 @@ class Transmission
     Dir[File.join(File.dirname(__FILE__), 'modules', '*.rb' )].each do |file|
       basename = File.basename(file, File.extname(file))
       next if @@exclude_module_list.include?(basename)
-      
-      load file
-      component = Component.new.extend basename.camelize.constantize
-      @entries += component.collection.reject{|x| @@exclude_variables_list.include?(x.name.to_s)} if component.os_support?
+
+      begin
+        load file
+        component = Component.new.extend basename.camelize.constantize
+        @entries += component.collection.reject{|x| @@exclude_variables_list.include?(x[:name].to_s)} if component.os_support?
+      rescue Exception
+        $stderr.print "Please try again"
+      end
     end
   end
 
