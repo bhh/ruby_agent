@@ -1,13 +1,11 @@
 key: "user key"
 host: "host key"
-
 # Prevents Module Files from beeing loaded
 #
 # exclude_modules:
 #   - cpu_usage
 #   - memory
 exclude_modules:
-
 # Prevents Variables from beeing transmitted
 # exclude_variables:
 #   - cpu_usage

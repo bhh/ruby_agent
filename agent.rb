@@ -45,7 +45,7 @@ class Transmission
         end
       end
     end
-    @request.body = xml_output
+    @@request.body = xml_output
   end
 
 
@@ -53,11 +53,11 @@ class Transmission
   def set_entries
     Dir[File.join(File.dirname(__FILE__), 'modules', '*.rb' )].each do |file|
       basename = File.basename(file, File.extname(file))
-      next if @exclude_module_list.include?(basename)
+      next if @@exclude_module_list.include?(basename)
       
       load file
       component = Component.new.extend basename.camelize.constantize
-      @entries += component.collection.reject{|x| @exclude_variables_list.include?(x.name.to_s)} if component.os_support?
+      @entries += component.collection.reject{|x| @@exclude_variables_list.include?(x.name.to_s)} if component.os_support?
     end
   end
 
@@ -65,7 +65,7 @@ class Transmission
     set_entries
     generate_xml
     # TODO Store for later use if entries were not created
-    Net::HTTP.start(@url.host, @url.port) {|http| http.request(@request) }
+    Net::HTTP.start(@@url.host, @@url.port) {|http| http.request(@@request) }
   end
 end
 
