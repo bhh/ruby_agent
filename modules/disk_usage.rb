@@ -1,12 +1,11 @@
 module DiskUsage
-  def self.extended
+  def collection
+    return @collection if @collection
+    
     @disks_regex = [/[sh]d[a-d][1-9]+/, %r(/dev/)]
     @disk_list = %x(df -P).split("\n")
     @disk_list.shift
     @collection = []
-  end
-
-  def collection
     @disk_list.each do |line|
       line = line.split
       if @disks_regex.detect{|x| line[0].to_s.match(x)}

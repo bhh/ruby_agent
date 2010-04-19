@@ -16,14 +16,14 @@ class Transmission
     raise ArgumentError if options["key"].nil?
     raise ArgumentError if options["host"].nil?
 
-    @url = URI.parse('http://monitor.ttech.at/entries.xml')
-    @request = Net::HTTP::Post.new(@url.path)
-    @request['Content-Type'] = "application/xml"
-    @request['X-Requested-With'] = "XmlHttpRequest"
-    @key = options["key"]
-    @host = options["host"]
-    @exclude_module_list = options["exclude_modules"]
-    @exclude_variables_list = options["exclude_variables"]
+    @@url ||= URI.parse('http://monitor.ttech.at/entries.xml')
+    @@request ||= Net::HTTP::Post.new(@@url.path)
+    @@request['Content-Type'] ||= "application/xml"
+    @@request['X-Requested-With'] ||= "XmlHttpRequest"
+    @@key ||= options["key"]
+    @@host ||= options["host"]
+    @@exclude_module_list ||= options["exclude_modules"] || []
+    @@exclude_variables_list ||= options["exclude_variables"] || []
     @entries = []
   end
 
@@ -34,8 +34,8 @@ class Transmission
     x.request do
       x.configuration do
         x.version 1.0
-        x.key @key
-        x.host @host
+        x.key @@key
+        x.host @@host
       end
       for entry in @entries
         x.entry do
