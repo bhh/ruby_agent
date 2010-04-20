@@ -3,9 +3,11 @@ host: "host key"
 # Prevents Module Files from beeing loaded
 #
 # exclude_modules:
+#   - random
 #   - cpu_usage
 #   - memory
 exclude_modules:
+  - random
 # Prevents Variables from beeing transmitted
 # exclude_variables:
 #   - cpu_usage

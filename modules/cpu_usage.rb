@@ -1,10 +1,10 @@
 module CpuUsage
   def collection
     return @collection if @collection
-
-    @cpu_usage ||= `cat /proc/loadavg`.split.first.to_f * 100
     @collection = []
-    @collection << {:name => :cpu_usage, :value => @cpu_usage, :max => 100}
+
+    cpu_usage = `cat /proc/loadavg`.split.first.to_f * 100
+    @collection << {:name => "cpu_usage", :value => cpu_usage, :max => 100}
   end
 
   def os_support?

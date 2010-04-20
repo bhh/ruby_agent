@@ -4,8 +4,6 @@ require 'builder'
 require 'active_support'
 require 'yaml'
 
-config = YAML.load_file(File.join(File.dirname(__FILE__),'config.yml'))
-
 class Transmission
   class Component
     
@@ -65,7 +63,7 @@ class Transmission
     end
   end
 
-  def send
+  def deliver
     set_entries
     generate_xml
     # TODO Store for later use if entries were not created
@@ -77,6 +75,7 @@ while(true)
   GC.start
   sleep 60
 
+  config = YAML.load_file(File.join(File.dirname(__FILE__),'config.yml'))
   transmission = Transmission.new(config)
-  transmission.send
+  transmission.deliver
 end
