@@ -40,7 +40,7 @@ class Transmission
         x.entry do
           x.key entry[:name].to_s
           x.value entry[:value].to_f
-          x.max entry[:max].to_f if entry[:max]
+          x.max entry[:max].to_i if entry[:max]
           x.view_type entry[:view_type].to_f if entry[:view_type]
         end
       end
