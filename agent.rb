@@ -6,7 +6,8 @@ require 'yaml'
 
 class Transmission
   class Component
-    
+    DELTA = 2.freeze
+    DELTA_ABS = 3.freeze
   end
 
   def initialize(*args)

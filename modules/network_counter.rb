@@ -7,8 +7,8 @@ module NetworkCounter
     2.times{network_output.shift}
     network_output.each do |line|
       stats = line.strip.split(/[ :]+/)
-      @collection << {:name => "net bytes #{stats[0].to_s}", :value => stats[1].to_f, :view_type => :delta}
-      @collection << {:name => "net errs #{stats[0].to_s}", :value => stats[3].to_f, :view_type => :delta}
+      @collection << {:name => "net bytes #{stats[0].to_s}", :value => stats[1].to_f, :view_type => Transmission::Component::DELTA_ABS}
+      @collection << {:name => "net errs #{stats[0].to_s}", :value => stats[3].to_f, :view_type => Transmission::Component::DELTA_ABS}
     end
     @collection
   end
